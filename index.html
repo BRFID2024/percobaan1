@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessing Content</title>
+    <script>
+        // Tentukan user-agent yang diizinkan (OTT Navigator)
+        const allowedUserAgent = "OTT Navigator";
+
+        // Ambil user-agent dari perangkat yang mengakses
+        const userAgent = navigator.userAgent;
+
+        // Tampilkan user-agent di konsol untuk debugging (hanya untuk pengujian)
+        console.log("User-Agent: ", userAgent);
+
+        // Periksa apakah user-agent sesuai dengan OTT Navigator
+        if (userAgent.includes(allowedUserAgent)) {
+            // Pengalihan ke URL Pastebin jika user-agent cocok
+            window.location.href = "https://pastebin.com/raw/0tWWueCH";  // Ganti dengan link Pastebin kamu
+        } else {
+            // Tampilkan pesan jika bukan OTT Navigator
+            document.body.innerHTML = `
+                <h1>Hanya dapat diakses melalui aplikasi OTT Navigator</h1>
+                <p>Konten hanya bisa diakses melalui aplikasi OTT Navigator. Silakan buka aplikasi OTT Navigator untuk mengaksesnya.</p>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <h1>Loading...</h1>
+</body>
+</html>
