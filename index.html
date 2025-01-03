@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accessing Content</title>
     <script>
-        // Tentukan user-agent yang diizinkan (OTT Navigator)
-        const allowedUserAgent = "OTT Navigator";
+        // Daftar user-agent browser biasa yang ingin diblokir
+        const blockedBrowsers = ["Chrome", "Firefox", "Safari", "Edge"];
 
         // Ambil user-agent dari perangkat yang mengakses
         const userAgent = navigator.userAgent;
@@ -14,16 +14,24 @@
         // Tampilkan user-agent di konsol untuk debugging (hanya untuk pengujian)
         console.log("User-Agent: ", userAgent);
 
-        // Periksa apakah user-agent sesuai dengan OTT Navigator
-        if (userAgent.includes(allowedUserAgent)) {
-            // Pengalihan ke URL Pastebin jika user-agent cocok
-            window.location.href = "https://pastebin.com/raw/0tWWueCH";  // Ganti dengan link Pastebin kamu
-        } else {
-            // Tampilkan pesan jika bukan OTT Navigator
+        // Cek apakah user-agent mengandung nama browser yang diblokir
+        let isBrowserBlocked = false;
+        for (let browser of blockedBrowsers) {
+            if (userAgent.includes(browser)) {
+                isBrowserBlocked = true;
+                break;
+            }
+        }
+
+        // Jika menggunakan browser biasa, tampilkan pesan
+        if (isBrowserBlocked) {
             document.body.innerHTML = `
-                <h1>Hanya dapat diakses melalui aplikasi OTT Navigator</h1>
-                <p>Konten hanya bisa diakses melalui aplikasi OTT Navigator. Silakan buka aplikasi OTT Navigator untuk mengaksesnya.</p>
+                <h1>Access Denied</h1>
+                <p>Konten ini hanya dapat diakses melalui aplikasi selain browser biasa seperti Chrome, Firefox, atau Safari.</p>
             `;
+        } else {
+            // Pengalihan ke URL Pastebin jika bukan browser biasa
+            window.location.href = "https://pastebin.com/raw/0tWWueCH";  // Ganti dengan link Pastebin kamu
         }
     </script>
 </head>
